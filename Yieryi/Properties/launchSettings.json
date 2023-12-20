@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Yieryi": {
+      "commandName": "Project",
+      "commandLineArgs": "COM4"
+    }
+  }
+}
