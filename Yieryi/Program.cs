@@ -119,19 +119,19 @@ namespace Yieryi
                             var response = IssueReadData(serialPort, address);
 
                             var cf = ((response[4] << 8) | response[5]) / 1000.0;
-                            var ph = ((response[6] << 8) | response[7]) / 100.0;
-                            // orp has strange format
-                            var orp = ((response[6] & (byte)0x40) == 0 ? 1 : -1) * (((response[6] & 0x3F) << 8) | response[7]);
                             var re = ((response[8] << 8) | response[9]) / 100.0;
                             var temp = ((response[10] << 8) | response[11]) / 10.0;
 
                             Console.Write($"cf: {cf}, ");
                             if (responseFormat == ResponseFormat.Ph)
                             {
+                                var ph = ((response[6] << 8) | response[7]) / 100.0;
                                 Console.Write($"ph: {ph}, ");
                             }
                             else
                             {
+                                // orp has strange format
+                                var orp = ((response[6] & (byte)0x40) == 0 ? 1 : -1) * (((response[6] & 0x3F) << 8) | response[7]);
                                 Console.Write($"orp: {orp}, ");
                             }
                             Console.WriteLine($"re: {re}, temp: {temp}");
